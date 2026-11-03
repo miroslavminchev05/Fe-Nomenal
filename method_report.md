@@ -11,16 +11,14 @@ the heme, the lower-energy state at every atom, and the lowest interface energy 
 resulting set. Each submitted file was checked with the organisers' validator and PoseBusters.
 The final submission is our fourth build (v4, uploaded 2026-10-25, live LDDT-PLI 0.4512).
 
-
 ## 2. Inputs
 
 - Protein: the organisers' CYP3A4 sequence (UniProt P08684, 503 residues), untrimmed.
-- Heme: CCD code `HEM` as its own chain. 
+- Heme: CCD code `HEM` as its own chain.
 - Ligand: the SMILES from `cyp-challenge-TEST-BLINDED_structures.csv` as downloaded on
-  2026-10-13, unchanged. 
+  2026-10-13, unchanged.
 - MSA: a pre-computed HHblits alignment (10,000 sequences), used as stored (find the MSA on
   Zenodo, DOI to follow).
-
 
 ## 3. Structure generation (RF3)
 
@@ -44,8 +42,8 @@ the standard genpot route (RDKit conformer, antechamber AM1-BCC charges). The he
 the CCD ideal geometry with RESP charges from the AMBER MCPB.py P450 set (Fe(III), deprotonated
 propionates) and was never moved. The energy used for picking is the interface energy,
 E(complex) - E(ligand moved far away), so heme-ligand contacts are included. The potential has no
-Fe-N bond term, so a coordinating nitrogen is pushed about 0.1 A off the iron by the minimiser;
-Fe-N distances were recorded before and after.
+Fe-N bond term, so the minimiser pushes a coordinating nitrogen about 0.13 A off the iron
+(median Fe-N 2.08 A before, 2.22 A after).
 
 ## 5. Pose selection
 
@@ -68,9 +66,10 @@ All models of a ligand are placed in one frame by superposing the heme and pocke
    other 14 picks come from the 100-model run.
 
 The submitted file is the minimised complex (chain A protein, chain B heme, chain C ligand `LIG`).
-For two ligands the minimised ligand failed the organisers' connectivity check (a squeezed
-cyclobutane in OCNT-2395789 and a squeezed cyclopropane in OCNT-2535519, where a distance-based
-bond guess adds a bond), so the raw RF3 coordinates were written instead.
+For two ligands the minimised ligand failed the organisers' connectivity check: two atoms came
+close enough for the distance-based bond guess to add a bond, across the cyclobutane in
+OCNT-2395789 (1.90 A) and between the amide oxygen and a neighbouring carbon in OCNT-2535519
+(1.69 A). For these two the raw RF3 coordinates were written instead.
 
 ## 6. Other things tried that did not beat v4
 
@@ -87,17 +86,19 @@ bond guess adds a bond), so the raw RF3 coordinates were written instead.
 
 ## 7. Limitations
 
-- Three ligands carry the wrong stereochemistry relative to the SMILES the organisers published on
-  2026-10-24 (two inverted centres, one ring cis/trans). Corrected files scored slightly lower on
-  the leaderboard, so the originals were kept. The scoring is graph-based and does not check
-  stereo, but the positions are affected.
+- Three submitted ligands have the wrong stereochemistry: OCNT-2395415 and OCNT-2312554 are the
+  inverted enantiomer at one centre each, and OCNT-2313038's cyclohexane is cis where the SMILES
+  is trans. The first two follow from the inputs, since the organisers added those stereocentres
+  on 2026-10-24, after the models were built. Files with all three corrected scored slightly lower
+  on the leaderboard, so the originals were kept. LDDT-PLI matches the ligand as a graph and does
+  not check stereochemistry, so the cost is in the atom positions only.
 - The energy function has no explicit Fe coordination term, so on-Fe and off-Fe poses are not
-  compared fairly. RF3 itself puts a ligand nitrogen on the iron in most of its models for 12 of the 20 ligands. Eleven
-  of these carry an aromatic nitrogen without a hydrogen (azole or pyridine), the group that binds
+  compared fairly. RF3 itself puts a ligand nitrogen on the iron in most of its models for 12 of
+  the 20 ligands. Eleven of these carry an aromatic nitrogen without a hydrogen (azole or pyridine), the group that binds
   the iron directly in type II CYP inhibitors. The twelfth, OCNT-2535422, has only N-H nitrogens
   and should not coordinate.
-- The other eight sit off the iron in most or all RF3 models (OCNT-2312966, OCNT-2313429, OCNT-2315379,
-  OCNT-2395328, OCNT-2395342, OCNT-2395460, OCNT-2395645, OCNT-2395712). RF3 spreads these over
+- The other eight sit off the iron in most or all RF3 models (OCNT-2312966, OCNT-2313429,
+  OCNT-2315379, OCNT-2395328, OCNT-2395342, OCNT-2395460, OCNT-2395645, OCNT-2395712). RF3 spreads these over
   7 to 28 pose families (2 A clusters), and for four of them no family holds more than a quarter
   of the models. The energy differences between families are a few REU, and for OCNT-2315379 the
   two largest families have the same median energy (-24.3 and -24.1 REU).
