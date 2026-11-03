@@ -93,12 +93,12 @@ OCNT-2395789 (1.90 A) and between the amide oxygen and a neighbouring carbon in 
   on the leaderboard, so the originals were kept. LDDT-PLI matches the ligand as a graph and does
   not check stereochemistry, so the cost is in the atom positions only.
 - The energy function has no explicit Fe coordination term, so on-Fe and off-Fe poses are not
-  compared fairly. RF3 itself puts a ligand nitrogen on the iron in most of its models for 12 of
-  the 20 ligands. Eleven of these carry an aromatic nitrogen without a hydrogen (azole or pyridine), the group that binds
-  the iron directly in type II CYP inhibitors. The twelfth, OCNT-2535422, has only N-H nitrogens
-  and should not coordinate.
+  compared fairly. RF3 itself puts a ligand nitrogen on the iron in most of its models for 12 of the
+  20 ligands. Eleven of these carry an aromatic nitrogen without a hydrogen (azole or pyridine), the
+  group that binds the iron directly in type II CYP inhibitors. The twelfth, OCNT-2535422, has only
+  N-H nitrogens and should not coordinate.
 - The other eight sit off the iron in most or all RF3 models (OCNT-2312966, OCNT-2313429,
-  OCNT-2315379, OCNT-2395328, OCNT-2395342, OCNT-2395460, OCNT-2395645, OCNT-2395712). RF3 spreads these over
-  7 to 28 pose families (2 A clusters), and for four of them no family holds more than a quarter
-  of the models. The energy differences between families are a few REU, and for OCNT-2315379 the
-  two largest families have the same median energy (-24.3 and -24.1 REU).
+  OCNT-2315379, OCNT-2395328, OCNT-2395342, OCNT-2395460, OCNT-2395645, OCNT-2395712). RF3 spreads
+  these over 7 to 28 pose families (2 A clusters), and for four of them no family holds more than a
+  quarter of the models. The energy differences between families are a few REU, and for OCNT-2315379
+  the two largest families have the same median energy (-24.3 and -24.1 REU).
