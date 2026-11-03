@@ -83,7 +83,7 @@ bond guess adds a bond), so the raw RF3 coordinates were written instead.
   scored LDDT-PLI 0.4445 against v4's 0.4512 (leaderboard, 2026-10-25), so their 100-model picks
   were kept.
 - Picking the most central model of the largest pose family instead of the lowest-energy model
-  (lost 0.70 LDDT-PLI summed over four ligands when tested).
+  (lost 0.035 mean LDDT-PLI when tested on four ligands, about 0.49 summed over the scored ones).
 
 ## 7. Limitations
 
