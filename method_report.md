@@ -92,8 +92,12 @@ bond guess adds a bond), so the raw RF3 coordinates were written instead.
   the leaderboard, so the originals were kept. The scoring is graph-based and does not check
   stereo, but the positions are affected.
 - The energy function has no explicit Fe coordination term, so on-Fe and off-Fe poses are not
-  compared fairly. Reassuringly, RF3 itself places a type II head (a nitrogen coordinating the
-  iron) for about two thirds of the ligands; the exception is one ligand whose nitrogens both
-  carry a hydrogen and should not coordinate.
-- For the ligands that do not coordinate the iron, RF3 spreads its models over many pose families
-  with no energy separation between them; for those the pick is close to a coin flip.
+  compared fairly. RF3 itself puts a ligand nitrogen on the iron in most of its models for 12 of the 20 ligands. Eleven
+  of these carry an aromatic nitrogen without a hydrogen (azole or pyridine), the group that binds
+  the iron directly in type II CYP inhibitors. The twelfth, OCNT-2535422, has only N-H nitrogens
+  and should not coordinate.
+- The other eight sit off the iron in most or all RF3 models (OCNT-2312966, OCNT-2313429, OCNT-2315379,
+  OCNT-2395328, OCNT-2395342, OCNT-2395460, OCNT-2395645, OCNT-2395712). RF3 spreads these over
+  7 to 28 pose families (2 A clusters), and for four of them no family holds more than a quarter
+  of the models. The energy differences between families are a few REU, and for OCNT-2315379 the
+  two largest families have the same median energy (-24.3 and -24.1 REU).
